@@ -1,0 +1,7 @@
+Kostenlose Open-Source Windows-Anwendung zum Herunterladen von Medien von Plattformen wie YouTube.
+Sie finden den Quellcode und alle verfügbaren Releases auf <a href="https://github.com/CodesDoWork/MediaDownloader">GitHub</a>!
+
+Dieses Projekt verwendet <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a>, um Ihre Medien herunterzuladen.
+
+Die in dieser Anwendung verwendeten Symbole wurden von <a href="https://iconmonstr.com">iconmonstr</a> heruntergeladen.
+Das App-Symbol selbst wurde von <a href="https://www.freepik.com">Freepik</a> erstellt und von <a href="https://www.flaticon.com/">www.flaticon.com</a> heruntergeladen.

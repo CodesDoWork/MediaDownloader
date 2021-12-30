@@ -1,0 +1,7 @@
+Free and Open-Source windows application to download media from Platforms like YouTube.
+Find the source code and all available releases on <a href="https://github.com/CodesDoWork/MediaDownloader">GitHub</a>!
+
+This project uses <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> to download your media.
+
+The icons used inside this application were downloaded from <a href="https://iconmonstr.com">iconmonstr</a>, check it out!
+The app icon itself was made by <a href="https://www.freepik.com">Freepik</a> and downloaded from <a href="https://www.flaticon.com/">www.flaticon.com</a>.

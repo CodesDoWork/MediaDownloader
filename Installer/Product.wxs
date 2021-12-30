@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?define releaseFolder="..\Releases\1.0.0.0\MediaDownloader\bin" ?>
+	<?define sourceFolder="..\MediaDownloader" ?>
+  <Product Id="EEEFD72E-4451-4AFA-8994-61A99EA63288" Name="Media Downloader" Language="1033" Version="1.0.0.0" Manufacturer="CodesDoWork" UpgradeCode="DF9618DD-729E-427F-BA34-D99EAA20D02C">
+		<Package Languages="1033" Manufacturer="CodesDoWork" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <Media Id="1" Cabinet="md_installer.cab" EmbedCab="yes" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <Icon Id="icon.ico" SourceFile="$(var.sourceFolder)\Resources\icon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="AppRootDir" Name="Media Downloader">
+          <Directory Id="db" Name="db" />
+          <Directory Id="de" Name="de" />
+          <Directory Id="dl" Name="dl" />
+          <Directory Id="x64D" Name="x64" />
+          <Directory Id="x86D" Name="x86" />
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Media Downloader" />
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+
+    <DirectoryRef Id="AppRootDir">
+      <Component Id="Main" Guid="67D95351-28AF-4872-9110-6EFE2243158A">
+        <File Source="$(var.releaseFolder)\EntityFramework.dll" />
+        <File Source="$(var.releaseFolder)\EntityFramework.SqlServer.dll" />
+        <File Source="$(var.releaseFolder)\MediaDownloader.exe" />
+        <File Source="$(var.releaseFolder)\MediaDownloader.exe.config" />
+        <File Source="$(var.releaseFolder)\Syroot.KnownFolders.dll" />
+        <File Source="$(var.releaseFolder)\System.Data.SQLite.dll" />
+        <File Source="$(var.releaseFolder)\System.Data.SQLite.EF6.dll" />
+        <File Source="$(var.releaseFolder)\System.Data.SQLite.Linq.dll" />
+        <File Source="$(var.releaseFolder)\System.Security.Principal.Windows.dll" />
+        <File Source="$(var.releaseFolder)\WpfAnimatedGif.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="db">
+      <Component Id="Db" Guid="50A15FA4-57EE-4118-80F2-918E8232AC80">
+        <File Source="$(var.releaseFolder)\db\db.db" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="de">
+      <Component Id="De" Guid="177E26C0-D4F2-46F2-8F50-EE369C14AE2F">
+        <File Source="$(var.releaseFolder)\de\MediaDownloader.resources.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="dl">
+      <Component Id="Dl" Guid="69539466-0AC1-462C-939B-AA0BF4A24328">
+        <File Source="$(var.releaseFolder)\dl\ffmpeg.exe" />
+        <File Source="$(var.releaseFolder)\dl\yt-dlp_x86.exe" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="x64D">
+      <Component Id="x64C" Guid="2E376AAA-3586-4ADB-9BB2-B6E441FAF699">
+        <File Id="SQLite.Interop.dll_x64" Source="$(var.releaseFolder)\x64\SQLite.Interop.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="x86D">
+      <Component Id="x86C" Guid="E784AD48-CA07-4EC1-8334-AB38A96BBDC2">
+        <File Id="SQLite.Interop.dll_x86" Source="$(var.releaseFolder)\x86\SQLite.Interop.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="295BBB6E-35F0-485F-91EA-A396C3B47D2A">
+        <Shortcut
+          Id="ApplicationStartMenuShortcut"
+          Name="Media Downloader"
+          Target="[#MediaDownloader.exe]"
+          WorkingDirectory="AppRootDir" />
+        <RemoveFolder Id="CleanupShortcut" Directory="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue
+          Root="HKCU"
+          Key="Software\MediaDownloader"
+          Name="installed"
+          Type="integer"
+          Value="1"
+          KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="ApplicationShortcutDesktop" Guid="*">
+        <Shortcut
+          Id="ApplicationDesktopShortcut"
+          Name="Media Downloader"
+          Target="[#MediaDownloader.exe]"
+          WorkingDirectory="AppRootDir" />
+        <RemoveFolder Id="DesktopFolder" On="uninstall" />
+        <RegistryValue
+          Root="HKCU"
+          Key="Software\MediaDownloader"
+          Name="installed"
+          Type="integer"
+          Value="1"
+          KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="MainApplication" Title="Main Application" Level="1">
+      <ComponentRef Id="Main" />
+      <ComponentRef Id="Db" />
+      <ComponentRef Id="De" />
+      <ComponentRef Id="Dl" />
+      <ComponentRef Id="x64C" />
+      <ComponentRef Id="x86C" />
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="ApplicationShortcutDesktop" />
+    </Feature>
+
+	</Product>
+</Wix>
