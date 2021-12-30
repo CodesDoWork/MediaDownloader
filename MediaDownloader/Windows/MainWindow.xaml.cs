@@ -1,14 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using MediaDownloader.Data;
+using MediaDownloader.Download;
 using MediaDownloader.Utils;
 
 namespace MediaDownloader.Windows
 {
-    /// <summary>
-    ///     Interaction logic for AssetOverviewWindow.xaml
-    /// </summary>
     public partial class MainWindow
     {
         public MainWindow()
@@ -17,17 +14,17 @@ namespace MediaDownloader.Windows
             DataContext = this;
         }
 
-        public NotifyProperty<Download> Download { get; } = new() {Value = new Download()};
+        public NotifyProperty<Data.Download> Download { get; } = new() {Value = new Data.Download()};
 
         //public ObservableCollection<SavedDownload> SavedDownloads { get; } = GetLocalSavedDownloads();
 
         private void StartDownload(object sender, RoutedEventArgs e)
         {
-            Downloader.Download(Download.Value);
+            DownloadHelper.Download(Download.Value);
 
             var downloadType = Download.Value.DownloadType.Value;
             var videoQuality = Download.Value.VideoQuality.Value;
-            Download.Value = new Download(Download.Value.Url)
+            Download.Value = new Data.Download(Download.Value.Url)
             {
                 DownloadType =
                 {

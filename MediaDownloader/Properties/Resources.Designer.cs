@@ -159,7 +159,7 @@ namespace MediaDownloader.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Media Downloader ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Media DownloadHelper ähnelt.
         /// </summary>
         public static string AppName {
             get {
