@@ -7,9 +7,10 @@
     xmlns:p="clr-namespace:MediaDownloader.Properties"
     xmlns:utils="clr-namespace:MediaDownloader.Utils"
     xmlns:views="clr-namespace:MediaDownloader.Views"
+    xmlns:download="clr-namespace:MediaDownloader.Download"
     DataContext="{Binding RelativeSource={RelativeSource AncestorType=views:DownloadsList}}">
     <Border BorderThickness="2">
-        <ListView ItemsSource="{x:Static utils:Downloader.CurrentDownloads}">
+        <ListView ItemsSource="{x:Static download:DownloadHelper.CurrentDownloads}">
             <ListView.ItemTemplate>
                 <DataTemplate DataType="data:Download">
                     <Border Padding="10" BorderThickness="0,0,0,1">

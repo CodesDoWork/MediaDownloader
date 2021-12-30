@@ -139,7 +139,8 @@
     <Compile Include="Data\FileSize.cs" />
     <Compile Include="Data\SavedDownload.cs" />
     <Compile Include="Data\VideoQuality.cs" />
-    <Compile Include="Utils\Downloader.cs" />
+    <Compile Include="Download\Downloader.cs" />
+    <Compile Include="Download\DownloadHelper.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Globals.cs" />
     <Compile Include="Utils\NotifyProperty.cs" />
@@ -156,6 +157,7 @@
     </Compile>
     <Compile Include="Utils\RegexUtils.cs" />
     <Compile Include="Utils\Update.cs" />
+    <Compile Include="Download\YtDlp.cs" />
     <Compile Include="Views\DownloadsList.xaml.cs">
       <DependentUpon>DownloadsList.xaml</DependentUpon>
     </Compile>
@@ -206,7 +208,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="dl\dl.7z" />
-    <None Include="MediaDownloader_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
