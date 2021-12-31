@@ -1,0 +1,47 @@
+﻿<Window
+    x:Class="MediaDownloader.Windows.PopupWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:w="clr-namespace:MediaDownloader.Windows"
+    Width="400"
+    Height="200"
+    DataContext="{Binding RelativeSource={RelativeSource AncestorType=w:PopupWindow}}"
+    ResizeMode="CanMinimize"
+    WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Image
+            Grid.RowSpan="2"
+            Margin="0,0,15,0"
+            Source="{StaticResource AppIcon}" />
+        <TextBlock Grid.Column="1" Text="{Binding InfoText}" />
+        <ListView
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            ItemsSource="{Binding Buttons}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="w:PopupWindow+PopupButton">
+                    <Button
+                        Command="{Binding OnClick}"
+                        CommandParameter="{Binding}"
+                        Content="{Binding Text}"
+                        Style="{StaticResource SmallButton}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
