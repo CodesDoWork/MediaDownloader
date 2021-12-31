@@ -19,13 +19,13 @@ namespace MediaDownloader.Utils
 
         private const string ReleaseTagUrl = ReleasesUrl + "/tag/";
 
-        public const string SetupFile = "MediaDownloader.msi";
+        private const string SetupFile = "MediaDownloader.msi";
 
-        public const string PortableFile = "MediaDownloader-Portable.zip";
+        private const string PortableFile = "MediaDownloader-Portable.zip";
 
-        private readonly UpdateClient Client;
+        private readonly UpdateClient _client;
 
-        public UpdateChecker() { Client = new UpdateClient(); }
+        public UpdateChecker() { _client = new UpdateClient(); }
 
         public void Start()
         {
@@ -38,7 +38,7 @@ namespace MediaDownloader.Utils
         {
             try
             {
-                var latestRelease = Client.GetLatestRelease();
+                var latestRelease = _client.GetLatestRelease();
                 if (latestRelease != GetCurrentRelease())
                 {
                     Application.Current.Dispatcher.Invoke(
@@ -59,13 +59,13 @@ namespace MediaDownloader.Utils
         private void Download(PopupWindow.Button button)
         {
             var latestRelease = (string) button.Extras;
-            var filename      = Client.DownloadInstallationAsset(latestRelease);
+            var filename      = _client.DownloadInstallationAsset(latestRelease);
 
             DownloadUpdateWindow downloadWindow = new(filename, latestRelease);
             downloadWindow.Show();
             button.Window.Close();
 
-            Client.DownloadProgressChanged += (_, e) => downloadWindow.DownloadProgress.Value = e.ProgressPercentage;
+            _client.DownloadProgressChanged += (_, e) => downloadWindow.DownloadProgress.Value = e.ProgressPercentage;
         }
 
         private void Later(PopupWindow.Button button) { button.Window.Close(); }
