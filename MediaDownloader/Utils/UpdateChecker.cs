@@ -21,7 +21,7 @@ namespace MediaDownloader.Utils
 
         private const string SetupFile = "MediaDownloader.msi";
 
-        private const string PortableFile = "MediaDownloader-Portable.zip";
+        private const string PortableFile = "MediaDownloader.zip";
 
         private readonly UpdateClient _client;
 
