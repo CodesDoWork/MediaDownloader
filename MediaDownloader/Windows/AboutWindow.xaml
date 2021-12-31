@@ -8,7 +8,7 @@
     xmlns:w="clr-namespace:MediaDownloader.Windows"
     Width="700"
     Height="450"
-    ResizeMode="NoResize"
+    ResizeMode="CanMinimize"
     mc:Ignorable="d">
     <Grid Margin="50">
         <Grid.RowDefinitions>

@@ -1,0 +1,43 @@
+﻿<Window
+    x:Class="MediaDownloader.Windows.DownloadUpdateWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:gif="http://wpfanimatedgif.codeplex.com"
+    xmlns:p="clr-namespace:MediaDownloader.Properties"
+    xmlns:w="clr-namespace:MediaDownloader.Windows"
+    Title="{x:Static p:Resources.DownloadingUpdate}"
+    Width="400"
+    Height="135"
+    DataContext="{Binding RelativeSource={RelativeSource AncestorType=w:DownloadUpdateWindow}}"
+    ResizeMode="CanMinimize"
+    WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="10" VerticalAlignment="Center">
+        <TextBlock Padding="0,0,0,5">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{x:Static p:Resources.DownloadStatusText}">
+                    <Binding Path="Filename" />
+                    <Binding Path="ReleaseVersion" />
+                    <Binding Path="DownloadProgress.Value" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <ProgressBar
+            Height="20"
+            Maximum="100"
+            Value="{Binding DownloadProgress.Value}" />
+        <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+            <Image Height="15" gif:ImageBehavior.AnimatedSource="../Resources/loading.gif" />
+            <TextBlock Text="{x:Static p:Resources.Installing}" />
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding DownloadProgress.Value}" Value="100">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+        </StackPanel>
+    </StackPanel>
+</Window>

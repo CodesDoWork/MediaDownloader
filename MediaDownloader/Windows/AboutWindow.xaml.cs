@@ -42,7 +42,7 @@ namespace MediaDownloader.Windows
             AboutText.Inlines.Add(aboutText.Substring(lastIndex));
         }
 
-        private void RequestNavigate(object sender, RequestNavigateEventArgs e)
+        private static void RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;

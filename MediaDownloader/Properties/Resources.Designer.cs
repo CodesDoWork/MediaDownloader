@@ -159,7 +159,7 @@ namespace MediaDownloader.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Media DownloadHelper ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Media Downloader ähnelt.
         /// </summary>
         public static string AppName {
             get {
@@ -237,6 +237,24 @@ namespace MediaDownloader.Properties {
         public static string DownloadFailed {
             get {
                 return ResourceManager.GetString("DownloadFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Downloading Update ähnelt.
+        /// </summary>
+        public static string DownloadingUpdate {
+            get {
+                return ResourceManager.GetString("DownloadingUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} for release {1} is currently downloading - {2}% ähnelt.
+        /// </summary>
+        public static string DownloadStatusText {
+            get {
+                return ResourceManager.GetString("DownloadStatusText", resourceCulture);
             }
         }
         
@@ -325,11 +343,29 @@ namespace MediaDownloader.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Installing ähnelt.
+        /// </summary>
+        public static string Installing {
+            get {
+                return ResourceManager.GetString("Installing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Last download ähnelt.
         /// </summary>
         public static string LastDownload {
             get {
                 return ResourceManager.GetString("LastDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Later ähnelt.
+        /// </summary>
+        public static string Later {
+            get {
+                return ResourceManager.GetString("Later", resourceCulture);
             }
         }
         
@@ -404,6 +440,15 @@ namespace MediaDownloader.Properties {
         public static string UpdateAvailable {
             get {
                 return ResourceManager.GetString("UpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Release {0} is available now! Do you want to download it? ähnelt.
+        /// </summary>
+        public static string UpdateQuest {
+            get {
+                return ResourceManager.GetString("UpdateQuest", resourceCulture);
             }
         }
         

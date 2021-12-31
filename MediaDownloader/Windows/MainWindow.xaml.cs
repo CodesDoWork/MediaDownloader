@@ -11,7 +11,8 @@ namespace MediaDownloader.Windows
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this;
+            DataContext =  this;
+            Closed      += (_, _) => Application.Current.Shutdown();
         }
 
         public NotifyProperty<Data.Download> Download { get; } = new() {Value = new Data.Download()};

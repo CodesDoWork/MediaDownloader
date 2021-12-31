@@ -139,6 +139,12 @@
   <data name="DownloadFailed" xml:space="preserve">
     <value>Download fehlgeschlagen</value>
   </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="DownloadStatusText" xml:space="preserve">
+    <value>{0} für Release {1} wird heruntergeladen - {2}%</value>
+  </data>
   <data name="DownloadString" xml:space="preserve">
     <value>{0} verbleibend - {1} von {2} ({3})</value>
   </data>
@@ -154,8 +160,14 @@
   <data name="Info" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="Installing" xml:space="preserve">
+    <value>Installieren</value>
+  </data>
   <data name="LastDownload" xml:space="preserve">
     <value>Letzter Download</value>
+  </data>
+  <data name="Later" xml:space="preserve">
+    <value>Später</value>
   </data>
   <data name="Preparing" xml:space="preserve">
     <value>Download wird gestartet</value>
@@ -171,6 +183,9 @@
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
     <value>Update verfügbar!</value>
+  </data>
+  <data name="UpdateQuest" xml:space="preserve">
+    <value>Release {0} ist jetzt verfügbar! Möchtest du es herunterladen?</value>
   </data>
   <data name="VideoQualityLabel" xml:space="preserve">
     <value>Videoqualität:</value>
