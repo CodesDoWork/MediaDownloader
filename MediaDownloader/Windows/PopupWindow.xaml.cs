@@ -5,11 +5,16 @@ namespace MediaDownloader.Windows
 {
     public partial class PopupWindow
     {
-        public PopupWindow(string title, string infoText, params PopupButton[] buttons)
+        public PopupWindow(string title, string infoText, params Button[] buttons)
         {
             Title    = title;
             InfoText = infoText;
             Buttons  = buttons;
+
+            foreach (var button in buttons)
+            {
+                button.Window = this;
+            }
 
             InitializeComponent();
             DataContext = this;
@@ -17,11 +22,11 @@ namespace MediaDownloader.Windows
 
         public string InfoText { get; }
 
-        public PopupButton[] Buttons { get; }
+        public Button[] Buttons { get; }
 
-        public class PopupButton
+        public class Button
         {
-            public PopupButton(string text, Action<PopupButton> onClick, object extras = null)
+            public Button(string text, Action<Button> onClick, object extras = null)
             {
                 Text    = text;
                 OnClick = new ClickCommand(onClick);
@@ -39,13 +44,13 @@ namespace MediaDownloader.Windows
 
         public class ClickCommand : ICommand
         {
-            public ClickCommand(Action<PopupButton> action) { Action = action; }
+            public ClickCommand(Action<Button> action) { Action = action; }
 
-            public Action<PopupButton> Action { get; }
+            public Action<Button> Action { get; }
 
             public bool CanExecute(object parameter) { return true; }
 
-            public void Execute(object parameter) { Action((PopupButton) parameter); }
+            public void Execute(object parameter) { Action((Button) parameter); }
 
             public event EventHandler CanExecuteChanged;
         }

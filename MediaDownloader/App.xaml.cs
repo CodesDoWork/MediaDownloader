@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using MediaDownloader.Utils;
-using static MediaDownloader.Utils.Update;
 
 namespace MediaDownloader
 {
@@ -17,7 +16,7 @@ namespace MediaDownloader
                 };
             }
 
-            CheckForUpdates();
+            new UpdateChecker().Start();
         }
     }
 }

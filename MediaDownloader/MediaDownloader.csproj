@@ -156,7 +156,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\RegexUtils.cs" />
-    <Compile Include="Utils\Update.cs" />
+    <Compile Include="Utils\UpdateChecker.cs" />
     <Compile Include="Download\YtDlp.cs" />
     <Compile Include="Views\DownloadsList.xaml.cs">
       <DependentUpon>DownloadsList.xaml</DependentUpon>

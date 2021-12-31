@@ -34,7 +34,7 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
-                <DataTemplate DataType="w:PopupWindow+PopupButton">
+                <DataTemplate DataType="w:PopupWindow+Button">
                     <Button
                         Command="{Binding OnClick}"
                         CommandParameter="{Binding}"
