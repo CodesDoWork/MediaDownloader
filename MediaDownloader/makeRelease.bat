@@ -30,5 +30,5 @@ del %SCRIPT%
 echo:
 
 :: create portable release
-echo Creating archive for protable release...
+echo Creating archive for portable release...
 "C:\Program Files\7-Zip\7z.exe" a ..\Releases\%ver%\MediaDownloader.zip ..\Releases\%ver%\MediaDownloader\* -r
