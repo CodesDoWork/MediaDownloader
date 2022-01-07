@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<?define releaseFolder="..\Releases\1.1.0\MediaDownloader\bin" ?>
+	<?define releaseFolder="..\Releases\1.1.2\MediaDownloader\bin" ?>
 	<?define sourceFolder="..\MediaDownloader" ?>
-  <Product Id="*" Name="Media Downloader" Language="1033" Version="1.1.1" Manufacturer="CodesDoWork" UpgradeCode="DF9618DD-729E-427F-BA34-D99EAA20D02C">
+  <Product Id="*" Name="Media Downloader" Language="1033" Version="1.1.2" Manufacturer="CodesDoWork" UpgradeCode="DF9618DD-729E-427F-BA34-D99EAA20D02C">
 		<Package Languages="1033" Manufacturer="CodesDoWork" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <Media Id="1" Cabinet="md_installer.cab" EmbedCab="yes" />
 
