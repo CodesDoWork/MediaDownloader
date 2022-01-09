@@ -141,6 +141,7 @@
     <Compile Include="Data\FileSize.cs" />
     <Compile Include="Data\MetadataSettings.cs" />
     <Compile Include="Data\SavedDownload.cs" />
+    <Compile Include="Data\TitleModifier.cs" />
     <Compile Include="Data\VideoQuality.cs" />
     <Compile Include="Download\Downloader.cs" />
     <Compile Include="Download\DownloadHelper.cs" />
@@ -183,6 +184,9 @@
     <Compile Include="Windows\PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\TitleModifiersWindow.xaml.cs">
+      <DependentUpon>TitleModifiersWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\DownloadsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +206,10 @@
     <Page Include="Windows\PopupWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\TitleModifiersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

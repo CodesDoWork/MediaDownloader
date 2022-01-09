@@ -389,6 +389,15 @@ namespace MediaDownloader.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Modify title ähnelt.
+        /// </summary>
+        public static string ModifyTitle {
+            get {
+                return ResourceManager.GetString("ModifyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         public static string Name {
@@ -449,6 +458,15 @@ namespace MediaDownloader.Properties {
         public static string StoragePath {
             get {
                 return ResourceManager.GetString("StoragePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Target to remove ähnelt.
+        /// </summary>
+        public static string TargetToRemove {
+            get {
+                return ResourceManager.GetString("TargetToRemove", resourceCulture);
             }
         }
         

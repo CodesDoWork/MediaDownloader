@@ -172,6 +172,9 @@
   <data name="Metadata" xml:space="preserve">
     <value>Metadaten</value>
   </data>
+  <data name="ModifyTitle" xml:space="preserve">
+    <value>Titel bearbeiten</value>
+  </data>
   <data name="Preparing" xml:space="preserve">
     <value>Download wird gestartet</value>
   </data>
@@ -186,6 +189,9 @@
   </data>
   <data name="StoragePath" xml:space="preserve">
     <value>Speicherpfad</value>
+  </data>
+  <data name="TargetToRemove" xml:space="preserve">
+    <value>Zu entfernen</value>
   </data>
   <data name="UnhandledExceptionMessage" xml:space="preserve">
     <value>Dieses Feature funktioniert noch nicht vollständig. Wir arbeiten bereits an einer Lösung des Problems.</value>

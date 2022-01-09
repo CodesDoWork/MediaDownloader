@@ -99,19 +99,25 @@
                 Grid.Column="3"
                 Content="{x:Static p:Resources.Metadata}"
                 Style="{StaticResource GridLabel}" />
-            <CheckBox
-                Grid.Row="4"
-                Grid.Column="3"
-                Margin="10,10,10,5"
-                Content="{x:Static p:Resources.SetThumbnail}"
-                IsChecked="{Binding Download.Value.MetadataSettings.SaveThumbnail.Value}" />
-            <CheckBox
+            <StackPanel Grid.Row="3" Grid.Column="3">
+                <CheckBox
+                    Margin="10,3"
+                    Content="{x:Static p:Resources.SetThumbnail}"
+                    IsChecked="{Binding Download.Value.MetadataSettings.SaveThumbnail.Value}" />
+                <CheckBox
+                    Margin="10,3"
+                    Content="{x:Static p:Resources.SetPlaylistAsAlbum}"
+                    IsChecked="{Binding Download.Value.MetadataSettings.SavePlaylistAsAlbum.Value}"
+                    IsEnabled="{Binding Download.Value.DownloadSettings.IsVideoDownload.Value, Converter={StaticResource BooleanToggleConverter}}" />
+            </StackPanel>
+            <Button
                 Grid.Row="3"
-                Grid.Column="3"
-                Margin="10,10,10,5"
-                Content="{x:Static p:Resources.SetPlaylistAsAlbum}"
-                IsChecked="{Binding Download.Value.MetadataSettings.SavePlaylistAsAlbum.Value}"
-                IsEnabled="{Binding Download.Value.DownloadSettings.IsVideoDownload.Value, Converter={StaticResource BooleanToggleConverter}}" />
+                Grid.Column="4"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Right"
+                Click="ModifyTitle"
+                Content="{x:Static p:Resources.ModifyTitle}" />
+
             <!--
         <TextBlock
             Grid.Row="2"

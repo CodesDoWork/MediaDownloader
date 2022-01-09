@@ -223,6 +223,9 @@
   <data name="Metadata" xml:space="preserve">
     <value>Metadata</value>
   </data>
+  <data name="ModifyTitle" xml:space="preserve">
+    <value>Modify title</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -243,6 +246,9 @@
   </data>
   <data name="StoragePath" xml:space="preserve">
     <value>Storage path</value>
+  </data>
+  <data name="TargetToRemove" xml:space="preserve">
+    <value>Target to remove</value>
   </data>
   <data name="UnhandledExceptionMessage" xml:space="preserve">
     <value>This feature does not work properly yet. We are working very hard to fix this as soon as possible.</value>

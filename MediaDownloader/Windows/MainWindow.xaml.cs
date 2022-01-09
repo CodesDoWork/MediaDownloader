@@ -40,5 +40,7 @@ namespace MediaDownloader.Windows
         }
 
         private void ShowAboutInfo(object sender, RoutedEventArgs e) { new AboutWindow().ShowDialog(); }
+
+        private void ModifyTitle(object sender, RoutedEventArgs e) { new TitleModifiersWindow().ShowDialog(); }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MediaDownloader.Download;
+﻿using System.ComponentModel;
+using MediaDownloader.Download;
 using MediaDownloader.Utils;
 using Syroot.Windows.IO;
 
@@ -42,7 +43,10 @@ namespace MediaDownloader.Data
         public void Start()
         {
             _downloader = Downloader.GetDownloaderFor(this);
-            _downloader.Start();
+
+            BackgroundWorker worker = new();
+            worker.DoWork += (_, _) => _downloader.Start();
+            worker.RunWorkerAsync();
         }
 
         public void Abort() { _downloader.Abort(); }

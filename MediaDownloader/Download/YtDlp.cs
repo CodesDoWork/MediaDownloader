@@ -5,6 +5,8 @@ using static MediaDownloader.Utils.RegexUtils;
 
 namespace MediaDownloader.Download
 {
+    // TODO replacements for "[Lyric Video]", "(Original Video)", etc.
+
     public class YtDlp : Downloader
     {
         private const string ExePath = "dl\\yt-dlp_x86.exe";
@@ -46,6 +48,14 @@ namespace MediaDownloader.Download
         protected override string MakeProcessArguments()
         {
             StringBuilder builder = new(DownloadArgs);
+            foreach (var titleModifier in TitleModifier.GetLocalSavedDownloads())
+            {
+                if (titleModifier.IsActivated)
+                {
+                    builder.Append(ReplaceInMetadata("title", titleModifier.Target, ""));
+                }
+            }
+
             if (Download.DownloadSettings.IsVideoDownload.Value)
             {
                 AppendVideoArgs(builder);
@@ -62,6 +72,7 @@ namespace MediaDownloader.Download
 
             return builder.Append(EmbedArgs)
                           .Append(QualityArgs)
+                          .Append(ReplaceInMetadata("title", " $", ""))
                           .Append(
                               $" -o \"{Download.StoragePath}\\%(artist)s - %(title)s.%(ext)s\" -i \"{Download.Url.Value}\""
                           )

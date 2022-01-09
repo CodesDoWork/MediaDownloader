@@ -9,5 +9,7 @@ namespace MediaDownloader.Data
         public static DatabaseContext DBConnection { get; } = new();
 
         public virtual DbSet<SavedDownload> SavedDownloads { get; set; }
+
+        public virtual DbSet<TitleModifier> TitleModifiers { get; set; }
     }
 }
