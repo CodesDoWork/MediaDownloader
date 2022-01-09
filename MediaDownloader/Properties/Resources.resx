@@ -220,6 +220,9 @@
   <data name="loading" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\loading.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -231,6 +234,12 @@
   </data>
   <data name="Saved" xml:space="preserve">
     <value>Saved</value>
+  </data>
+  <data name="SetPlaylistAsAlbum" xml:space="preserve">
+    <value>Set playlist as album</value>
+  </data>
+  <data name="SetThumbnail" xml:space="preserve">
+    <value>Set video thumbnail as cover</value>
   </data>
   <data name="StoragePath" xml:space="preserve">
     <value>Storage path</value>

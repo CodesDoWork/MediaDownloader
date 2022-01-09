@@ -6,21 +6,20 @@ namespace MediaDownloader.Data
 {
     public class Download
     {
+        private Downloader _downloader;
+        public Download() : this(null) { }
+
         public Download(string url = null, string storagePath = null)
         {
-            Url         = url;
+            Url.Value   = url;
             StoragePath = storagePath ?? new KnownFolder(KnownFolderType.Downloads).Path;
         }
 
-        public string Url { get; set; }
+        public NotifyProperty<string> Url { get; } = new();
 
         public string StoragePath { get; }
 
-        private Downloader Downloader { get; set; }
-
-        public NotifyProperty<DownloadType> DownloadType { get; } = new() {Value = Data.DownloadType.Audio};
-
-        public NotifyProperty<VideoQuality> VideoQuality { get; } = new() {Value = Data.VideoQuality.Best};
+        public DownloadSettings DownloadSettings { get; } = new();
 
         public NotifyProperty<string> Destination { get; } = new();
 
@@ -36,14 +35,25 @@ namespace MediaDownloader.Data
 
         public NotifyProperty<string> TimeRemaining { get; } = new();
 
-        public NotifyProperty<DownloadStatus> CurrentStatus { get; } = new() {Value = DownloadStatus.Preparing};
+        public NotifyProperty<DownloadStatus> CurrentStatus { get; } = new(DownloadStatus.Preparing);
+
+        public MetadataSettings MetadataSettings { get; } = new();
 
         public void Start()
         {
-            Downloader = Downloader.GetDownloaderFor(this);
-            Downloader.Start();
+            _downloader = Downloader.GetDownloaderFor(this);
+            _downloader.Start();
         }
 
-        public void Abort() { Downloader.Abort(); }
+        public void Abort() { _downloader.Abort(); }
+
+        public Download New()
+        {
+            Download download = new();
+            download.DownloadSettings.CopyFrom(DownloadSettings);
+            download.MetadataSettings.CopyFrom(MetadataSettings);
+
+            return download;
+        }
     }
 }

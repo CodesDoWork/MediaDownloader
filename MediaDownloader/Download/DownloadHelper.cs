@@ -12,12 +12,12 @@ namespace MediaDownloader.Download
 
         public static void Download(Data.Download download)
         {
-            if (string.IsNullOrWhiteSpace(download.Url))
+            if (string.IsNullOrWhiteSpace(download.Url.Value))
             {
                 return;
             }
 
-            if (!IsValidUrl(download.Url))
+            if (!IsValidUrl(download.Url.Value))
             {
                 ShowInfo(Resources.EnterValidURL);
                 return;

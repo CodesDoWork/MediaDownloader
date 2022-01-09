@@ -8,6 +8,9 @@ namespace MediaDownloader.Utils
         public delegate void OnChange(T value);
 
         private T _value;
+        public NotifyProperty() { }
+
+        public NotifyProperty(T value) { Value = value; }
 
         public List<OnChange> Listeners { get; } = new();
 

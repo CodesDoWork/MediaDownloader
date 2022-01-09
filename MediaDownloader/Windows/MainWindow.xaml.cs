@@ -15,27 +15,14 @@ namespace MediaDownloader.Windows
             Closed      += (_, _) => Application.Current.Shutdown();
         }
 
-        public NotifyProperty<Data.Download> Download { get; } = new() {Value = new Data.Download()};
+        public NotifyProperty<Data.Download> Download { get; } = new(new Data.Download());
 
         //public ObservableCollection<SavedDownload> SavedDownloads { get; } = GetLocalSavedDownloads();
 
         private void StartDownload(object sender, RoutedEventArgs e)
         {
             DownloadHelper.Download(Download.Value);
-
-            var downloadType = Download.Value.DownloadType.Value;
-            var videoQuality = Download.Value.VideoQuality.Value;
-            Download.Value = new Data.Download(Download.Value.Url)
-            {
-                DownloadType =
-                {
-                    Value = downloadType
-                },
-                VideoQuality =
-                {
-                    Value = videoQuality
-                }
-            };
+            Download.Value = Download.Value.New();
         }
 
         private void ShowDownloadsMenu(object sender, RoutedEventArgs e)

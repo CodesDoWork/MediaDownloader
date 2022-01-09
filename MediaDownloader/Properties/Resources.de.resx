@@ -169,11 +169,20 @@
   <data name="Later" xml:space="preserve">
     <value>Später</value>
   </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metadaten</value>
+  </data>
   <data name="Preparing" xml:space="preserve">
     <value>Download wird gestartet</value>
   </data>
   <data name="Saved" xml:space="preserve">
     <value>Gespeicherte Downloads</value>
+  </data>
+  <data name="SetPlaylistAsAlbum" xml:space="preserve">
+    <value>Playlist als Album speichern</value>
+  </data>
+  <data name="SetThumbnail" xml:space="preserve">
+    <value>Thumbnail als Cover speichern</value>
   </data>
   <data name="StoragePath" xml:space="preserve">
     <value>Speicherpfad</value>

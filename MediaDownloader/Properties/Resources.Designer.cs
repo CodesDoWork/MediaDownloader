@@ -380,6 +380,15 @@ namespace MediaDownloader.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Metadata ähnelt.
+        /// </summary>
+        public static string Metadata {
+            get {
+                return ResourceManager.GetString("Metadata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         public static string Name {
@@ -413,6 +422,24 @@ namespace MediaDownloader.Properties {
         public static string Saved {
             get {
                 return ResourceManager.GetString("Saved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set playlist as album ähnelt.
+        /// </summary>
+        public static string SetPlaylistAsAlbum {
+            get {
+                return ResourceManager.GetString("SetPlaylistAsAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set video thumbnail as cover ähnelt.
+        /// </summary>
+        public static string SetThumbnail {
+            get {
+                return ResourceManager.GetString("SetThumbnail", resourceCulture);
             }
         }
         
