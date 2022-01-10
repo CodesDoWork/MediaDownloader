@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
 using MediaDownloader.Utils;
+using static MediaDownloader.Data.DatabaseContext;
 
 namespace MediaDownloader.Windows
 {
@@ -16,6 +17,8 @@ namespace MediaDownloader.Windows
             InitializeComponent();
             DataContext =  this;
             Closed      += (_, _) => Application.Current.Shutdown();
+
+            InitDatabase();
         }
 
         public NotifyProperty<Data.Download> Download { get; } = new(new Data.Download());

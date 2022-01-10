@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<?define releaseFolder="..\Releases\1.2.1\MediaDownloader\bin" ?>
+	<?define releaseFolder="..\Releases\1.2.2\MediaDownloader\bin" ?>
 	<?define sourceFolder="..\MediaDownloader" ?>
-  <Product Id="*" Name="Media Downloader" Language="1033" Version="1.2.1" Manufacturer="CodesDoWork" UpgradeCode="DF9618DD-729E-427F-BA34-D99EAA20D02C">
-		<Package Languages="1033" Manufacturer="CodesDoWork" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+  <Product Id="*" Name="Media Downloader" Language="1033" Version="1.2.2" Manufacturer="CodesDoWork" UpgradeCode="DF9618DD-729E-427F-BA34-D99EAA20D02C">
+		<Package Languages="1033" Manufacturer="CodesDoWork" InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
     <Media Id="1" Cabinet="md_installer.cab" EmbedCab="yes" />
 
     <MajorUpgrade Schedule="afterInstallExecute" DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -12,7 +12,7 @@
     <Property Id="ARPPRODUCTICON" Value="icon.ico" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
+      <Directory Id="LocalAppDataFolder">
         <Directory Id="AppRootDir" Name="Media Downloader">
           <Directory Id="db" Name="db" />
           <Directory Id="de" Name="de" />
@@ -39,18 +39,42 @@
         <File Source="$(var.releaseFolder)\System.Data.SQLite.Linq.dll" />
         <File Source="$(var.releaseFolder)\System.Security.Principal.Windows.dll" />
         <File Source="$(var.releaseFolder)\WpfAnimatedGif.dll" />
+        <RemoveFolder Id="AppRootDir" On="uninstall" />
+        <RegistryValue
+          Root="HKCU"
+          Key="Software\MediaDownloader"
+          Name="installed"
+          Type="integer"
+          Value="1"
+          KeyPath="yes" />
       </Component>
     </DirectoryRef>
 
     <DirectoryRef Id="db">
       <Component Id="Db" Guid="50A15FA4-57EE-4118-80F2-918E8232AC80">
-        <File Source="$(var.releaseFolder)\db\db.db" />
+        <File ReadOnly="no" Source="$(var.releaseFolder)\db\db.db" />
+        <RemoveFolder Id="db" On="uninstall" />
+        <RegistryValue
+          Root="HKCU"
+          Key="Software\MediaDownloader"
+          Name="installed"
+          Type="integer"
+          Value="1"
+          KeyPath="yes" />
       </Component>
     </DirectoryRef>
 
     <DirectoryRef Id="de">
       <Component Id="De" Guid="177E26C0-D4F2-46F2-8F50-EE369C14AE2F">
         <File Source="$(var.releaseFolder)\de\MediaDownloader.resources.dll" />
+        <RemoveFolder Id="de" On="uninstall" />
+        <RegistryValue
+          Root="HKCU"
+          Key="Software\MediaDownloader"
+          Name="installed"
+          Type="integer"
+          Value="1"
+          KeyPath="yes" />
       </Component>
     </DirectoryRef>
 
@@ -58,18 +82,42 @@
       <Component Id="Dl" Guid="69539466-0AC1-462C-939B-AA0BF4A24328">
         <File Source="$(var.releaseFolder)\dl\ffmpeg.exe" />
         <File Source="$(var.releaseFolder)\dl\yt-dlp_x86.exe" />
+        <RemoveFolder Id="dl" On="uninstall" />
+        <RegistryValue
+          Root="HKCU"
+          Key="Software\MediaDownloader"
+          Name="installed"
+          Type="integer"
+          Value="1"
+          KeyPath="yes" />
       </Component>
     </DirectoryRef>
 
     <DirectoryRef Id="x64D">
       <Component Id="x64C" Guid="2E376AAA-3586-4ADB-9BB2-B6E441FAF699">
         <File Id="SQLite.Interop.dll_x64" Source="$(var.releaseFolder)\x64\SQLite.Interop.dll" />
+        <RemoveFolder Id="x64D" On="uninstall" />
+        <RegistryValue
+          Root="HKCU"
+          Key="Software\MediaDownloader"
+          Name="installed"
+          Type="integer"
+          Value="1"
+          KeyPath="yes" />
       </Component>
     </DirectoryRef>
 
     <DirectoryRef Id="x86D">
       <Component Id="x86C" Guid="E784AD48-CA07-4EC1-8334-AB38A96BBDC2">
         <File Id="SQLite.Interop.dll_x86" Source="$(var.releaseFolder)\x86\SQLite.Interop.dll" />
+        <RemoveFolder Id="x86D" On="uninstall" />
+        <RegistryValue
+          Root="HKCU"
+          Key="Software\MediaDownloader"
+          Name="installed"
+          Type="integer"
+          Value="1"
+          KeyPath="yes" />
       </Component>
     </DirectoryRef>
 

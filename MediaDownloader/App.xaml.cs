@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using MediaDownloader.Utils;
-using static MediaDownloader.Data.DatabaseContext;
 
 namespace MediaDownloader
 {
@@ -17,7 +16,6 @@ namespace MediaDownloader
                 };
             }
 
-            InitDatabase();
             new UpdateChecker().Start();
         }
     }
