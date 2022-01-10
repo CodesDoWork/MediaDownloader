@@ -144,7 +144,6 @@
     <Compile Include="Data\TitleModifier.cs" />
     <Compile Include="Data\VideoQuality.cs" />
     <Compile Include="Download\Downloader.cs" />
-    <Compile Include="Download\DownloadHelper.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Globals.cs" />
     <Compile Include="Utils\NotifyProperty.cs" />

@@ -1,13 +1,16 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using MediaDownloader.Download;
+using System.Windows.Threading;
 using MediaDownloader.Utils;
 
 namespace MediaDownloader.Windows
 {
     public partial class MainWindow
     {
+        private const double DefaultIconPadding = 9;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -17,12 +20,38 @@ namespace MediaDownloader.Windows
 
         public NotifyProperty<Data.Download> Download { get; } = new(new Data.Download());
 
+        public NotifyProperty<double> DownloadIconPadding { get; } = new(DefaultIconPadding);
+
         //public ObservableCollection<SavedDownload> SavedDownloads { get; } = GetLocalSavedDownloads();
 
         private void StartDownload(object sender, RoutedEventArgs e)
         {
-            DownloadHelper.Download(Download.Value);
-            Download.Value = Download.Value.New();
+            if (Download.Value.Start())
+            {
+                Download.Value = Download.Value.New();
+
+                double animationDuration = 200;
+                DispatcherTimer timer = new()
+                {
+                    Tag      = DateTime.Now,
+                    Interval = TimeSpan.FromMilliseconds(1)
+                };
+                timer.Tick += (_, _) =>
+                {
+                    var elapsed = DateTime.Now - (DateTime) timer.Tag;
+                    if (elapsed.TotalMilliseconds >= 2 * animationDuration)
+                    {
+                        DownloadIconPadding.Value = DefaultIconPadding;
+                        timer.Stop();
+                        return;
+                    }
+
+                    var amp = 1 - Math.Pow((elapsed.TotalMilliseconds - animationDuration) / animationDuration, 2);
+                    DownloadIconPadding.Value = DefaultIconPadding * (1 - amp * 0.2);
+                    DownloadImage.Opacity     = 1 - amp * 0.67;
+                };
+                timer.Start();
+            }
         }
 
         private void ShowDownloadsMenu(object sender, RoutedEventArgs e)
