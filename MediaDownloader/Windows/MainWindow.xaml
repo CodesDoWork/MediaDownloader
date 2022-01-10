@@ -35,28 +35,28 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <TextBlock
-                Grid.ColumnSpan="5"
+                Grid.ColumnSpan="6"
                 Style="{StaticResource Heading}"
                 Text="{x:Static p:Resources.AppName}" />
 
             <views:HintTextBox
                 Grid.Row="1"
-                Grid.ColumnSpan="3"
+                Grid.ColumnSpan="4"
                 Hint="{x:Static p:Resources.URL}"
-                Text="{Binding Download.Value.Url, UpdateSourceTrigger=PropertyChanged}" />
+                Text="{Binding Download.Value.Url.Value, UpdateSourceTrigger=PropertyChanged}" />
             <Button
                 Grid.Row="1"
-                Grid.Column="3"
+                Grid.Column="4"
                 Click="StartDownload"
                 Content="{x:Static p:Resources.Download}" />
             <Button
                 Grid.Row="1"
-                Grid.Column="4"
+                Grid.Column="5"
                 Click="ShowDownloadsMenu"
-                Foreground="Aqua"
                 Style="{StaticResource IconButton}">
                 <Image x:Name="DownloadImage" Source="{StaticResource DownloadIcon}" />
                 <Button.ContextMenu>
@@ -85,42 +85,49 @@
                 Style="{StaticResource GridLabel}" />
             <ComboBox
                 Grid.Row="3"
-                VerticalAlignment="Bottom"
+                VerticalAlignment="Top"
                 ItemsSource="{x:Static data:DownloadType.AllDownloadTypes}"
-                SelectedItem="{Binding Download.Value.DownloadType.Value}"
+                SelectedItem="{Binding Download.Value.DownloadSettings.DownloadType.Value}"
                 Style="{StaticResource LabeledComboBox}" />
 
             <Label
                 Grid.Row="2"
                 Grid.Column="1"
-                Content="{x:Static p:Resources.VideoQualityLabel}">
-                <Label.Style>
-                    <Style BasedOn="{StaticResource GridLabel}" TargetType="Label">
-                        <Setter Property="IsEnabled" Value="False" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Download.Value.DownloadType.Value}" Value="{x:Static data:DownloadType.Video}">
-                                <Setter Property="IsEnabled" Value="True" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Label.Style>
-            </Label>
+                Content="{x:Static p:Resources.VideoQualityLabel}"
+                IsEnabled="{Binding Download.Value.DownloadSettings.IsVideoDownload.Value}"
+                Style="{StaticResource GridLabel}" />
             <ComboBox
                 Grid.Row="3"
                 Grid.Column="1"
+                VerticalAlignment="Top"
+                IsEnabled="{Binding Download.Value.DownloadSettings.IsVideoDownload.Value}"
                 ItemsSource="{x:Static data:VideoQuality.AllQualities}"
-                SelectedItem="{Binding Download.Value.VideoQuality.Value}">
-                <ComboBox.Style>
-                    <Style BasedOn="{StaticResource LabeledComboBox}" TargetType="ComboBox">
-                        <Setter Property="IsEnabled" Value="False" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Download.Value.DownloadType.Value}" Value="{x:Static data:DownloadType.Video}">
-                                <Setter Property="IsEnabled" Value="True" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ComboBox.Style>
-            </ComboBox>
+                SelectedItem="{Binding Download.Value.DownloadSettings.VideoQuality.Value}"
+                Style="{StaticResource LabeledComboBox}" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="3"
+                Content="{x:Static p:Resources.Metadata}"
+                Style="{StaticResource GridLabel}" />
+            <StackPanel Grid.Row="3" Grid.Column="3">
+                <CheckBox
+                    Margin="10,3"
+                    Content="{x:Static p:Resources.SetThumbnail}"
+                    IsChecked="{Binding Download.Value.MetadataSettings.SaveThumbnail.Value}" />
+                <CheckBox
+                    Margin="10,3"
+                    Content="{x:Static p:Resources.SetPlaylistAsAlbum}"
+                    IsChecked="{Binding Download.Value.MetadataSettings.SavePlaylistAsAlbum.Value}"
+                    IsEnabled="{Binding Download.Value.DownloadSettings.IsVideoDownload.Value, Converter={StaticResource BooleanToggleConverter}}" />
+            </StackPanel>
+            <Button
+                Grid.Row="3"
+                Grid.Column="4"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Right"
+                Click="ModifyTitle"
+                Content="{x:Static p:Resources.ModifyTitle}" />
+
             <!--
         <TextBlock
             Grid.Row="2"

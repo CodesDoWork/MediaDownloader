@@ -169,14 +169,29 @@
   <data name="Later" xml:space="preserve">
     <value>Später</value>
   </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metadaten</value>
+  </data>
+  <data name="ModifyTitle" xml:space="preserve">
+    <value>Titel bearbeiten</value>
+  </data>
   <data name="Preparing" xml:space="preserve">
     <value>Download wird gestartet</value>
   </data>
   <data name="Saved" xml:space="preserve">
     <value>Gespeicherte Downloads</value>
   </data>
+  <data name="SetPlaylistAsAlbum" xml:space="preserve">
+    <value>Playlist als Album speichern</value>
+  </data>
+  <data name="SetThumbnail" xml:space="preserve">
+    <value>Thumbnail als Cover speichern</value>
+  </data>
   <data name="StoragePath" xml:space="preserve">
     <value>Speicherpfad</value>
+  </data>
+  <data name="TargetToRemove" xml:space="preserve">
+    <value>Zu entfernen</value>
   </data>
   <data name="UnhandledExceptionMessage" xml:space="preserve">
     <value>Dieses Feature funktioniert noch nicht vollständig. Wir arbeiten bereits an einer Lösung des Problems.</value>

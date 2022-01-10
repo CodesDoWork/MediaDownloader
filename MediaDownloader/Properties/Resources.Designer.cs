@@ -380,6 +380,24 @@ namespace MediaDownloader.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Metadata ähnelt.
+        /// </summary>
+        public static string Metadata {
+            get {
+                return ResourceManager.GetString("Metadata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Modify title ähnelt.
+        /// </summary>
+        public static string ModifyTitle {
+            get {
+                return ResourceManager.GetString("ModifyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         public static string Name {
@@ -417,11 +435,38 @@ namespace MediaDownloader.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set playlist as album ähnelt.
+        /// </summary>
+        public static string SetPlaylistAsAlbum {
+            get {
+                return ResourceManager.GetString("SetPlaylistAsAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set video thumbnail as cover ähnelt.
+        /// </summary>
+        public static string SetThumbnail {
+            get {
+                return ResourceManager.GetString("SetThumbnail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Storage path ähnelt.
         /// </summary>
         public static string StoragePath {
             get {
                 return ResourceManager.GetString("StoragePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Target to remove ähnelt.
+        /// </summary>
+        public static string TargetToRemove {
+            get {
+                return ResourceManager.GetString("TargetToRemove", resourceCulture);
             }
         }
         

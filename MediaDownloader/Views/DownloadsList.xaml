@@ -20,7 +20,7 @@
                                             <Setter Property="Text" Value="{Binding Title.Value}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Title.Value}" Value="{x:Null}">
-                                                    <Setter Property="Text" Value="{Binding Url}" />
+                                                    <Setter Property="Text" Value="{Binding Url.Value}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>

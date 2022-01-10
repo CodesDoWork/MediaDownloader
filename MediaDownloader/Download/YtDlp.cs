@@ -5,6 +5,8 @@ using static MediaDownloader.Utils.RegexUtils;
 
 namespace MediaDownloader.Download
 {
+    // TODO replacements for "[Lyric Video]", "(Original Video)", etc.
+
     public class YtDlp : Downloader
     {
         private const string ExePath = "dl\\yt-dlp_x86.exe";
@@ -13,7 +15,9 @@ namespace MediaDownloader.Download
 
         private const string DownloadArgs = " -r 10G --throttled-rate 100K";
 
-        private const string EmbedArgs = " --embed-thumbnail --embed-metadata --embed-chapters";
+        private const string EmbedArgs = " --embed-metadata --embed-chapters";
+
+        private const string EmbedThumbnailArg = " --embed-thumbnail";
 
         private const string QualityArgs = " --audio-quality 320k";
 
@@ -43,15 +47,36 @@ namespace MediaDownloader.Download
 
         protected override string MakeProcessArguments()
         {
-            var formatArguments = Download.DownloadType.Value == DownloadType.Audio ? MakeAudioArgs() : MakeVideoArgs();
-            var storageArguments
-                = $" -o \"{Download.StoragePath}\\%(artist)s - %(title)s.%(ext)s\" -i \"{Download.Url}\"";
+            StringBuilder builder = new(DownloadArgs);
+            foreach (var titleModifier in TitleModifier.GetLocalSavedDownloads())
+            {
+                if (titleModifier.IsActivated)
+                {
+                    builder.Append(ReplaceInMetadata("title", titleModifier.Target, ""));
+                }
+            }
 
-            return new StringBuilder(DownloadArgs).Append(EmbedArgs)
-                                                  .Append(QualityArgs)
-                                                  .Append(formatArguments)
-                                                  .Append(storageArguments)
-                                                  .ToString();
+            if (Download.DownloadSettings.IsVideoDownload.Value)
+            {
+                AppendVideoArgs(builder);
+            }
+            else
+            {
+                AppendAudioArgs(builder);
+            }
+
+            if (Download.MetadataSettings.SaveThumbnail.Value)
+            {
+                builder.Append(EmbedThumbnailArg);
+            }
+
+            return builder.Append(EmbedArgs)
+                          .Append(QualityArgs)
+                          .Append(ReplaceInMetadata("title", " $", ""))
+                          .Append(
+                              $" -o \"{Download.StoragePath}\\%(artist)s - %(title)s.%(ext)s\" -i \"{Download.Url.Value}\""
+                          )
+                          .ToString();
         }
 
         protected override void ReceiveOutputData(string data)
@@ -105,19 +130,33 @@ namespace MediaDownloader.Download
             return $" --parse-metadata \"{from}:%({to})s\" --replace-in-metadata \"{to}\" \"^NA$\" \"\"";
         }
 
-        private static string MakeAudioArgs()
+        private static string ReplaceInMetadata(string where, string what, string with)
         {
-            return new StringBuilder(AudioArgs).Append(ParseMetadata("playlist_title", "album"))
-                                               .Append(ParseMetadata("playlist_index", "track_number"))
-                                               .ToString();
+            return $" --replace-in-metadata \"{where}\" \"{what}\" \"{with}\"";
         }
 
-        private string MakeVideoArgs()
+        private void AppendAudioArgs(StringBuilder builder)
         {
-            return VideoArgs +
-                   (Download.VideoQuality.Value == VideoQuality.Best
-                        ? ""
-                        : $" -S \"res:{Download.VideoQuality.Value.VideoHeight}\"");
+            builder.Append(AudioArgs);
+            if (Download.MetadataSettings.SavePlaylistAsAlbum.Value)
+            {
+                builder.Append(ParseMetadata("playlist_title", "album"))
+                       .Append(ParseMetadata("playlist_index", "track_number"));
+            }
+            else
+            {
+                builder.Append(ReplaceInMetadata("album", ".*", ""));
+            }
+        }
+
+        private void AppendVideoArgs(StringBuilder builder)
+        {
+            builder.Append(VideoArgs);
+
+            if (Download.DownloadSettings.VideoQuality.Value != VideoQuality.Best)
+            {
+                builder.Append($" -S \"res:{Download.DownloadSettings.VideoQuality.Value.VideoHeight}\"");
+            }
         }
     }
 }

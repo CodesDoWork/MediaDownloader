@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using MediaDownloader.Download;
 using MediaDownloader.Properties;
 using MediaDownloader.Utils;
@@ -14,9 +15,13 @@ namespace MediaDownloader.Data
 
         public static NotifyProperty<decimal> OverallPercentage = new();
 
+        private Downloader _downloader;
+
+        public Download() : this(null) { }
+
         public Download(string url = null, string storagePath = null)
         {
-            Url         = url;
+            Url.Value   = url;
             StoragePath = storagePath ?? new KnownFolder(KnownFolderType.Downloads).Path;
             Percentage.Listeners.Add(
                 _ =>
@@ -38,15 +43,11 @@ namespace MediaDownloader.Data
             );
         }
 
-        public string Url { get; set; }
+        public NotifyProperty<string> Url { get; } = new();
 
         public string StoragePath { get; }
 
-        private Downloader Downloader { get; set; }
-
-        public NotifyProperty<DownloadType> DownloadType { get; } = new() {Value = Data.DownloadType.Audio};
-
-        public NotifyProperty<VideoQuality> VideoQuality { get; } = new() {Value = Data.VideoQuality.Best};
+        public DownloadSettings DownloadSettings { get; } = new();
 
         public NotifyProperty<string> Destination { get; } = new();
 
@@ -62,16 +63,18 @@ namespace MediaDownloader.Data
 
         public NotifyProperty<string> TimeRemaining { get; } = new();
 
-        public NotifyProperty<DownloadStatus> CurrentStatus { get; } = new() {Value = DownloadStatus.Preparing};
+        public NotifyProperty<DownloadStatus> CurrentStatus { get; } = new(DownloadStatus.Preparing);
+
+        public MetadataSettings MetadataSettings { get; } = new();
 
         public bool Start()
         {
-            if (string.IsNullOrWhiteSpace(Url))
+            if (string.IsNullOrWhiteSpace(Url.Value))
             {
                 return false;
             }
 
-            if (!IsValidUrl(Url))
+            if (!IsValidUrl(Url.Value))
             {
                 ShowInfo(Resources.EnterValidURL);
                 return false;
@@ -84,14 +87,26 @@ namespace MediaDownloader.Data
 
 
             Percentage.Value = 0;
-            Downloader       = Downloader.GetDownloaderFor(this);
-            Downloader.Start();
+            _downloader      = Downloader.GetDownloaderFor(this);
+
+            BackgroundWorker worker = new();
+            worker.DoWork += (_, _) => _downloader.Start();
+            worker.RunWorkerAsync();
             CurrentDownloads.Add(this);
 
             return true;
         }
 
-        public void Abort() { Downloader.Abort(); }
+        public void Abort() { _downloader.Abort(); }
+
+        public Download New()
+        {
+            Download download = new();
+            download.DownloadSettings.CopyFrom(DownloadSettings);
+            download.MetadataSettings.CopyFrom(MetadataSettings);
+
+            return download;
+        }
 
         public void OnDownloadAction()
         {

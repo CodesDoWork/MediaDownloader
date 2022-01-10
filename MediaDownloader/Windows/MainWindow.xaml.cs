@@ -18,9 +18,9 @@ namespace MediaDownloader.Windows
             Closed      += (_, _) => Application.Current.Shutdown();
         }
 
-        public NotifyProperty<double> DownloadIconPadding { get; } = new() {Value = DefaultIconPadding};
+        public NotifyProperty<Data.Download> Download { get; } = new(new Data.Download());
 
-        public NotifyProperty<Data.Download> Download { get; } = new() {Value = new Data.Download()};
+        public NotifyProperty<double> DownloadIconPadding { get; } = new(DefaultIconPadding);
 
         //public ObservableCollection<SavedDownload> SavedDownloads { get; } = GetLocalSavedDownloads();
 
@@ -28,6 +28,8 @@ namespace MediaDownloader.Windows
         {
             if (Download.Value.Start())
             {
+                Download.Value = Download.Value.New();
+
                 double animationDuration = 200;
                 DispatcherTimer timer = new()
                 {
@@ -49,20 +51,6 @@ namespace MediaDownloader.Windows
                     DownloadImage.Opacity     = 1 - amp * 0.67;
                 };
                 timer.Start();
-
-                var downloadType = Download.Value.DownloadType.Value;
-                var videoQuality = Download.Value.VideoQuality.Value;
-                Download.Value = new Data.Download(Download.Value.Url)
-                {
-                    DownloadType =
-                    {
-                        Value = downloadType
-                    },
-                    VideoQuality =
-                    {
-                        Value = videoQuality
-                    }
-                };
             }
         }
 
@@ -81,5 +69,7 @@ namespace MediaDownloader.Windows
         }
 
         private void ShowAboutInfo(object sender, RoutedEventArgs e) { new AboutWindow().ShowDialog(); }
+
+        private void ModifyTitle(object sender, RoutedEventArgs e) { new TitleModifiersWindow().ShowDialog(); }
     }
 }
