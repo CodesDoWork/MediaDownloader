@@ -6,7 +6,7 @@
 		<Package Languages="1033" Manufacturer="CodesDoWork" InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
     <Media Id="1" Cabinet="md_installer.cab" EmbedCab="yes" />
 
-    <MajorUpgrade Schedule="afterInstallExecute" DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MajorUpgrade Schedule="afterInstallExecute" AllowSameVersionUpgrades="no" DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 
     <Icon Id="icon.ico" SourceFile="$(var.sourceFolder)\Resources\icon.ico" />
     <Property Id="ARPPRODUCTICON" Value="icon.ico" />
