@@ -15,8 +15,6 @@ namespace MediaDownloader
                     e.Handled = true;
                 };
             }
-
-            new UpdateChecker().Start();
         }
     }
 }

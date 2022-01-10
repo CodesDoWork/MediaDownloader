@@ -19,6 +19,7 @@ namespace MediaDownloader.Windows
             Closed      += (_, _) => Application.Current.Shutdown();
 
             InitDatabase();
+            new UpdateChecker().Start();
         }
 
         public NotifyProperty<Data.Download> Download { get; } = new(new Data.Download());

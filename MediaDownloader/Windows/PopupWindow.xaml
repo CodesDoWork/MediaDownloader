@@ -7,7 +7,6 @@
     Height="200"
     DataContext="{Binding RelativeSource={RelativeSource AncestorType=w:PopupWindow}}"
     ResizeMode="CanMinimize"
-    Topmost="True"
     WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <Grid.RowDefinitions>
