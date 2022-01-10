@@ -11,5 +11,11 @@ namespace MediaDownloader.Data
         public virtual DbSet<SavedDownload> SavedDownloads { get; set; }
 
         public virtual DbSet<TitleModifier> TitleModifiers { get; set; }
+
+        public static void InitDatabase()
+        {
+            DBConnection.Database.ExecuteSqlCommand(SavedDownload.CreateTableStatement);
+            DBConnection.Database.ExecuteSqlCommand(TitleModifier.CreateTableStatement);
+        }
     }
 }

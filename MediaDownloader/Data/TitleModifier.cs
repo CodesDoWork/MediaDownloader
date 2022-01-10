@@ -9,6 +9,9 @@ namespace MediaDownloader.Data
 {
     public class TitleModifier
     {
+        public const string CreateTableStatement
+            = "CREATE TABLE IF NOT EXISTS TitleModifiers (Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Target VARCHAR(50) NOT NULL, IsActivated BOOLEAN NOT NULL);";
+
         public static readonly List<TitleModifier> DefaultModifiers = new()
         {
             new TitleModifier {Target = "[\\[\\(][Oo]fficial[Aa]udio[\\]\\)]"},
