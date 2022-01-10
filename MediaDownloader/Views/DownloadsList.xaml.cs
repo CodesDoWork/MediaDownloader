@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using MediaDownloader.Download;
 
 namespace MediaDownloader.Views
 {
@@ -16,7 +15,7 @@ namespace MediaDownloader.Views
         {
             if (sender is Button {Tag: Data.Download download})
             {
-                DownloadHelper.OnDownloadAction(download);
+                download.OnDownloadAction();
             }
         }
     }

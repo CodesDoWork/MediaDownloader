@@ -56,8 +56,9 @@
                 Grid.Row="1"
                 Grid.Column="4"
                 Click="ShowDownloadsMenu"
+                Foreground="Aqua"
                 Style="{StaticResource IconButton}">
-                <Image Source="{StaticResource DownloadIcon}" />
+                <Image x:Name="DownloadImage" Source="{StaticResource DownloadIcon}" />
                 <Button.ContextMenu>
                     <ContextMenu>
                         <ContextMenu.Template>
@@ -67,6 +68,16 @@
                         </ContextMenu.Template>
                     </ContextMenu>
                 </Button.ContextMenu>
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border
+                            Padding="{Binding DownloadIconPadding.Value}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
             <Label
                 Grid.Row="2"
